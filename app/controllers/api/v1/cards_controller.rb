@@ -15,9 +15,18 @@ module Api
       end
 
       def update
-        card = Card.update(card_params)
+        card = Card.update(params[:id], card_params)
         if card
           render json: card
+        else
+          render json: card.errors, status: 500
+        end
+      end
+
+      def destroy
+        card = Card.destroy(params[:id])
+        if card
+          render json: {}
         else
           render json: card.errors, status: 500
         end
