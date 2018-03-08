@@ -14,6 +14,11 @@ module Api
         end
       end
 
+      def show
+        card = Card.find(params[:id])
+        render json: card
+      end
+
       def update
         card = Card.update(params[:id], card_params)
         if card
