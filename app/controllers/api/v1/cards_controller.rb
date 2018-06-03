@@ -2,8 +2,8 @@ module Api
   module V1
     class CardsController < ApplicationController
       def index
-        if params[:random] == 'true'
-          render json: Card.all.order('RANDOM()')
+        if params[:review] == 'true'
+          render json: Card.where(review: true).order('RANDOM()')
         else
           render json: Card.all.order('created_at')
         end
@@ -42,7 +42,7 @@ module Api
       end
 
       def card_params
-        params.require(:card).permit(:front_text, :back_text, :random)
+        params.require(:card).permit(:front_text, :back_text, :random, :review)
       end
     end
   end
