@@ -5,7 +5,7 @@ module Api
         if params[:review] == 'true'
           render json: Card.where(review: true).order('RANDOM()')
         else
-          render json: Card.all.order('created_at')
+          render json: Card.all.order(review: :desc, created_at: :asc)
         end
       end
 
